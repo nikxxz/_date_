@@ -1,4 +1,4 @@
-# waga
+# Dating App (Final)
 
 A new Flutter application.
 
