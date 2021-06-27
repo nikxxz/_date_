@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:date_/models/user.dart';
+import 'package:waga/models/user.dart';
 
 class MatchesRepository {
   final FirebaseFirestore _firestore;

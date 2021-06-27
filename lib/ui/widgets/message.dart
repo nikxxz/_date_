@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'package:date_/bloc/message/message_bloc.dart';
-import 'package:date_/bloc/message/message_state.dart';
-import 'package:date_/models/message.dart';
-import 'package:date_/repositories/messageRepository.dart';
-import 'package:date_/repositories/messaging.dart';
-import 'package:date_/ui/widgets/photo.dart';
+import 'package:waga/bloc/message/message_bloc.dart';
+import 'package:waga/bloc/message/message_state.dart';
+import 'package:waga/models/message.dart';
+import 'package:waga/repositories/messageRepository.dart';
+import 'package:waga/repositories/messaging.dart';
+import 'package:waga/ui/widgets/photo.dart';
 
 import '../constants.dart';
 

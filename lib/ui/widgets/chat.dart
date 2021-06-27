@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'package:date_/models/chat.dart';
-import 'package:date_/models/message.dart';
-import 'package:date_/models/user.dart';
-import 'package:date_/repositories/messageRepository.dart';
-import 'package:date_/ui/pages/messaging.dart';
-import 'package:date_/ui/widgets/pageTurn.dart';
-import 'package:date_/ui/widgets/photo.dart';
+import 'package:waga/models/chat.dart';
+import 'package:waga/models/message.dart';
+import 'package:waga/models/user.dart';
+import 'package:waga/repositories/messageRepository.dart';
+import 'package:waga/ui/pages/messaging.dart';
+import 'package:waga/ui/widgets/pageTurn.dart';
+import 'package:waga/ui/widgets/photo.dart';
 
 class ChatWidget extends StatefulWidget {
   final String userId, selectedUserId;

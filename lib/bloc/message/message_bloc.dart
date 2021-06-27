@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
-import 'package:date_/repositories/messageRepository.dart';
+import 'package:waga/repositories/messageRepository.dart';
 import './bloc.dart';
 
 class MessageBloc extends Bloc<MessageEvent, MessageState> {

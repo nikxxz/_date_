@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:date_/models/user.dart';
-import 'package:date_/repositories/searchRepository.dart';
+import 'package:waga/models/user.dart';
+import 'package:waga/repositories/searchRepository.dart';
 import './bloc.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {

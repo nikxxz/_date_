@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:date_/repositories/userRepository.dart';
-import 'package:date_/ui/pages/home.dart';
+import 'package:waga/repositories/userRepository.dart';
+import 'package:waga/ui/pages/home.dart';
 import 'bloc/authentication/authentication_bloc.dart';
 import 'bloc/authentication/authentication_event.dart';
 import 'bloc/blocDelegate.dart';

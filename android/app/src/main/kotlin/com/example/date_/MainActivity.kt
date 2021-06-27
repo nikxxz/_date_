@@ -1,4 +1,4 @@
-package com.example.waga
+package com.example.date_
 
 import io.flutter.embedding.android.FlutterActivity
 

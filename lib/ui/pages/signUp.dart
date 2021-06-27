@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:date_/bloc/signup/sign_up_bloc.dart';
-import 'package:date_/repositories/userRepository.dart';
-import 'package:date_/ui/widgets/signUpForm.dart';
+import 'package:waga/bloc/signup/sign_up_bloc.dart';
+import 'package:waga/repositories/userRepository.dart';
+import 'package:waga/ui/widgets/signUpForm.dart';
 
 import '../constants.dart';
 

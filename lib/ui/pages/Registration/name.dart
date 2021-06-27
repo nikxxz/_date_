@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:swipeable_page_route/swipeable_page_route.dart';
-import 'package:date_/ui/pages/Registration/gender.dart';
+import 'package:waga/ui/pages/Registration/gender.dart';
 
 class NameReg extends StatefulWidget {
   @override

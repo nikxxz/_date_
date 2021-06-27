@@ -1,9 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:date_/bloc/login/login_bloc.dart';
-import 'package:date_/repositories/userRepository.dart';
-import 'package:date_/ui/widgets/loginForm.dart';
+import 'package:waga/bloc/login/login_bloc.dart';
+import 'package:waga/repositories/userRepository.dart';
+import 'package:waga/ui/widgets/loginForm.dart';
 
 import '../constants.dart';
 
