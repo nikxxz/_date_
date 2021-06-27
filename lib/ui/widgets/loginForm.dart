@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waga/bloc/authentication/authentication_bloc.dart';
-import 'package:waga/bloc/authentication/authentication_event.dart';
-import 'package:waga/bloc/login/login_bloc.dart';
-import 'package:waga/bloc/login/login_event.dart';
-import 'package:waga/bloc/login/login_state.dart';
-import 'package:waga/repositories/userRepository.dart';
-import 'package:waga/ui/pages/signUp.dart';
+import 'package:_date_/bloc/authentication/authentication_bloc.dart';
+import 'package:_date_/bloc/authentication/authentication_event.dart';
+import 'package:_date_/bloc/login/login_bloc.dart';
+import 'package:_date_/bloc/login/login_event.dart';
+import 'package:_date_/bloc/login/login_state.dart';
+import 'package:_date_/repositories/userRepository.dart';
+import 'package:_date_/ui/pages/signUp.dart';
 
 import '../constants.dart';
 

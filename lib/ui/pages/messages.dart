@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
-import 'package:waga/Payments.dart';
-import 'package:waga/bloc/message/message_bloc.dart';
-import 'package:waga/bloc/message/message_event.dart';
-import 'package:waga/bloc/message/message_state.dart';
-import 'package:waga/repositories/messageRepository.dart';
-import 'package:waga/ui/pages/userProfile.dart';
-import 'package:waga/ui/widgets/chat.dart';
+import 'package:_date_/Payments.dart';
+import 'package:_date_/bloc/message/message_bloc.dart';
+import 'package:_date_/bloc/message/message_event.dart';
+import 'package:_date_/bloc/message/message_state.dart';
+import 'package:_date_/repositories/messageRepository.dart';
+import 'package:_date_/ui/pages/userProfile.dart';
+import 'package:_date_/ui/widgets/chat.dart';
 
 class Messages extends StatefulWidget {
   final String userId;

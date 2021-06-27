@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
-import 'package:waga/repositories/userRepository.dart';
+import 'package:_date_/repositories/userRepository.dart';
 import './bloc.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {

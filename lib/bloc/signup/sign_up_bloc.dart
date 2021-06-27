@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:waga/repositories/userRepository.dart';
-import 'package:waga/ui/validators.dart';
+import 'package:_date_/repositories/userRepository.dart';
+import 'package:_date_/ui/validators.dart';
 import './bloc.dart';
 import 'package:rxdart/rxdart.dart';
 

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:waga/bloc/authentication/authentication_bloc.dart';
-import 'package:waga/bloc/authentication/authentication_event.dart';
-import 'package:waga/bloc/signup/sign_up_bloc.dart';
-import 'package:waga/bloc/signup/sign_up_event.dart';
-import 'package:waga/bloc/signup/sign_up_state.dart';
-import 'package:waga/repositories/userRepository.dart';
-import 'package:waga/ui/pages/login.dart';
+import 'package:_date_/bloc/authentication/authentication_bloc.dart';
+import 'package:_date_/bloc/authentication/authentication_event.dart';
+import 'package:_date_/bloc/signup/sign_up_bloc.dart';
+import 'package:_date_/bloc/signup/sign_up_event.dart';
+import 'package:_date_/bloc/signup/sign_up_state.dart';
+import 'package:_date_/repositories/userRepository.dart';
+import 'package:_date_/ui/pages/login.dart';
 
 import '../constants.dart';
 

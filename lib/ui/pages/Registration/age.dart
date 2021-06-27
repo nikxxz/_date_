@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:swipeable_page_route/swipeable_page_route.dart';
-import 'package:waga/ui/pages/Registration/sexualPreference.dart';
+import 'package:_date_/ui/pages/Registration/sexualPreference.dart';
 
 class AgeReg extends StatefulWidget {
   final String name;

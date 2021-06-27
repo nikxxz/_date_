@@ -10,7 +10,7 @@ import 'package:im_animations/im_animations.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:swipeable_page_route/swipeable_page_route.dart';
-import 'package:waga/repositories/userRepository.dart';
+import 'package:_date_/repositories/userRepository.dart';
 import 'height.dart';
 
 class ProfileImage extends StatefulWidget {

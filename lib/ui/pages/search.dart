@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:waga/bloc/search/search_bloc.dart';
-import 'package:waga/bloc/search/search_event.dart';
-import 'package:waga/bloc/search/search_state.dart';
-import 'package:waga/models/user.dart';
-import 'package:waga/repositories/searchRepository.dart';
-import 'package:waga/ui/widgets/iconWidget.dart';
-import 'package:waga/ui/widgets/profile.dart';
-import 'package:waga/ui/widgets/userGender.dart';
+import 'package:_date_/bloc/search/search_bloc.dart';
+import 'package:_date_/bloc/search/search_event.dart';
+import 'package:_date_/bloc/search/search_state.dart';
+import 'package:_date_/models/user.dart';
+import 'package:_date_/repositories/searchRepository.dart';
+import 'package:_date_/ui/widgets/iconWidget.dart';
+import 'package:_date_/ui/widgets/profile.dart';
+import 'package:_date_/ui/widgets/userGender.dart';
 
 class Search extends StatefulWidget {
   final String userId;

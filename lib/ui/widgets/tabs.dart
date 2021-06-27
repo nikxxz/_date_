@@ -4,11 +4,11 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:waga/ui/pages/likesYou.dart';
-import 'package:waga/ui/pages/matches.dart';
-import 'package:waga/ui/pages/messages.dart';
-import 'package:waga/ui/pages/search.dart';
-import 'package:waga/ui/pages/userProfile.dart';
+import 'package:_date_/ui/pages/likesYou.dart';
+import 'package:_date_/ui/pages/matches.dart';
+import 'package:_date_/ui/pages/messages.dart';
+import 'package:_date_/ui/pages/search.dart';
+import 'package:_date_/ui/pages/userProfile.dart';
 
 class Tabs extends StatefulWidget {
   final userId;

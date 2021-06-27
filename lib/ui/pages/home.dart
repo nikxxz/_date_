@@ -1,8 +1,8 @@
-import 'package:waga/bloc/authentication/authentication_bloc.dart';
-import 'package:waga/bloc/authentication/authentication_state.dart';
-import 'package:waga/repositories/userRepository.dart';
-import 'package:waga/ui/pages/splash.dart';
-import 'package:waga/ui/widgets/tabs.dart';
+import 'package:_date_/bloc/authentication/authentication_bloc.dart';
+import 'package:_date_/bloc/authentication/authentication_state.dart';
+import 'package:_date_/repositories/userRepository.dart';
+import 'package:_date_/ui/pages/splash.dart';
+import 'package:_date_/ui/widgets/tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

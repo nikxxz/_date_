@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:waga/ui/widgets/photo.dart';
+import 'package:_date_/ui/widgets/photo.dart';
 
 Widget profileWidget(
     {padding,

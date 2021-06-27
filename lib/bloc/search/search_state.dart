@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:waga/models/user.dart';
+import 'package:_date_/models/user.dart';
 
 abstract class SearchState extends Equatable {
   const SearchState();

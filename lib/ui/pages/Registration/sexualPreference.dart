@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:swipeable_page_route/swipeable_page_route.dart';
-import 'package:waga/ui/pages/Registration/profileImage.dart';
+import 'package:_date_/ui/pages/Registration/profileImage.dart';
 
 class PrefReg extends StatefulWidget {
   final String name;

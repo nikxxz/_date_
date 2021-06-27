@@ -7,12 +7,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:waga/bloc/authentication/authentication_bloc.dart';
-import 'package:waga/bloc/authentication/authentication_event.dart';
-import 'package:waga/bloc/profile/profile_bloc.dart';
-import 'package:waga/bloc/profile/profile_event.dart';
-import 'package:waga/bloc/profile/profile_state.dart';
-import 'package:waga/repositories/userRepository.dart';
+import 'package:_date_/bloc/authentication/authentication_bloc.dart';
+import 'package:_date_/bloc/authentication/authentication_event.dart';
+import 'package:_date_/bloc/profile/profile_bloc.dart';
+import 'package:_date_/bloc/profile/profile_event.dart';
+import 'package:_date_/bloc/profile/profile_state.dart';
+import 'package:_date_/repositories/userRepository.dart';
 
 import '../constants.dart';
 import 'gender.dart';

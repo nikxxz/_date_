@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:waga/Payments.dart';
+import 'package:_date_/Payments.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class UserProfile extends StatefulWidget {
