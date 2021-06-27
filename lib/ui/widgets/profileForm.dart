@@ -7,22 +7,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:waga/bloc/authentication/authentication_bloc.dart';
-import 'package:waga/bloc/authentication/authentication_event.dart';
-import 'package:waga/bloc/profile/profile_bloc.dart';
-import 'package:waga/bloc/profile/profile_event.dart';
-import 'package:waga/bloc/profile/profile_state.dart';
-import 'package:waga/repositories/userRepository.dart';
+import 'package:date_/bloc/authentication/authentication_bloc.dart';
+import 'package:date_/bloc/authentication/authentication_event.dart';
+import 'package:date_/bloc/profile/profile_bloc.dart';
+import 'package:date_/bloc/profile/profile_event.dart';
+import 'package:date_/bloc/profile/profile_state.dart';
+import 'package:date_/repositories/userRepository.dart';
 
 import '../constants.dart';
 import 'gender.dart';
 
 class ProfileForm extends StatefulWidget {
-  final UserRepository _userRepository;
+  final String name;
+  final String gender;
+  final DateTime dateTime;
+  final String preference;
+  final File image;
 
-  ProfileForm({@required UserRepository userRepository})
-      : assert(userRepository != null),
-        _userRepository = userRepository;
+  const ProfileForm(
+      this.name, this.gender, this.dateTime, this.preference, this.image);
 
   @override
   _ProfileFormState createState() => _ProfileFormState();
@@ -39,17 +42,6 @@ class _ProfileFormState extends State<ProfileForm> {
 
   //UserRepository get _userRepository => widget._userRepository;
 
-  bool get isFilled =>
-      _nameController.text.isNotEmpty &&
-      gender != null &&
-      interestedIn != null &&
-      photo != null &&
-      age != null;
-
-  bool isButtonEnabled(ProfileState state) {
-    return isFilled && !state.isSubmitting;
-  }
-
   _getLocation() async {
     Position position = await Geolocator()
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
@@ -61,12 +53,12 @@ class _ProfileFormState extends State<ProfileForm> {
     await _getLocation();
     _profileBloc.add(
       Submitted(
-          name: _nameController.text,
-          age: age,
+          name: widget.name,
+          age: widget.dateTime,
           location: location,
-          gender: gender,
-          interestedIn: interestedIn,
-          photo: photo),
+          gender: widget.gender,
+          interestedIn: widget.preference,
+          photo: widget.image),
     );
   }
 
@@ -88,7 +80,7 @@ class _ProfileFormState extends State<ProfileForm> {
     Size size = MediaQuery.of(context).size;
 
     return BlocListener<ProfileBloc, ProfileState>(
-      //bloc: _profileBloc,
+      bloc: _profileBloc,
       listener: (context, state) {
         if (state.isFailure) {
           print("Failed");
@@ -141,169 +133,25 @@ class _ProfileFormState extends State<ProfileForm> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Container(
-                    width: size.width,
-                    child: CircleAvatar(
-                      radius: size.width * 0.3,
-                      backgroundColor: Colors.transparent,
-                      child: photo == null
-                          ? GestureDetector(
-                              onTap: () async {
-                                File getPic = await FilePicker.getFile(
-                                    type: FileType.image);
-                                if (getPic != null) {
-                                  setState(() {
-                                    photo = getPic;
-                                  });
-                                }
-                              },
-                              child: Image.asset('assets/profilephoto.png'),
-                            )
-                          : GestureDetector(
-                              onTap: () async {
-                                File getPic = await FilePicker.getFile(
-                                    type: FileType.image);
-                                if (getPic != null) {
-                                  setState(() {
-                                    photo = getPic;
-                                  });
-                                }
-                              },
-                              child: CircleAvatar(
-                                radius: size.width * 0.3,
-                                backgroundImage: FileImage(photo),
-                              ),
-                            ),
-                    ),
-                  ),
-                  textFieldWidget(_nameController, "Name", size),
-                  GestureDetector(
-                    onTap: () {
-                      DatePicker.showDatePicker(
-                        context,
-                        showTitleActions: true,
-                        minTime: DateTime(1900, 1, 1),
-                        maxTime: DateTime(DateTime.now().year - 19, 1, 1),
-                        onConfirm: (date) {
-                          setState(() {
-                            age = date;
-                          });
-                          print(age);
-                        },
-                      );
-                    },
-                    child: Text(
-                      "Enter Birthday",
-                      style: TextStyle(
-                          color: Colors.white, fontSize: size.width * 0.09),
-                    ),
-                  ),
+                  Container(width: size.width),
                   SizedBox(
                     height: 10.0,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: size.height * 0.02),
-                        child: Text(
-                          "You Are",
-                          style: TextStyle(
-                              color: Colors.white, fontSize: size.width * 0.09),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          genderWidget(
-                              FontAwesomeIcons.venus, "Female", size, gender,
-                              () {
-                            setState(() {
-                              gender = "Female";
-                            });
-                          }),
-                          genderWidget(
-                              FontAwesomeIcons.mars, "Male", size, gender, () {
-                            setState(() {
-                              gender = "Male";
-                            });
-                          }),
-                          genderWidget(
-                            FontAwesomeIcons.transgender,
-                            "Transgender",
-                            size,
-                            gender,
-                            () {
-                              setState(
-                                () {
-                                  gender = "Transgender";
-                                },
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: size.height * 0.02,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: size.height * 0.02),
-                        child: Text(
-                          "Looking For",
-                          style: TextStyle(
-                              color: Colors.white, fontSize: size.width * 0.09),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          genderWidget(FontAwesomeIcons.venus, "Female", size,
-                              interestedIn, () {
-                            setState(() {
-                              interestedIn = "Female";
-                            });
-                          }),
-                          genderWidget(
-                              FontAwesomeIcons.mars, "Male", size, interestedIn,
-                              () {
-                            setState(() {
-                              interestedIn = "Male";
-                            });
-                          }),
-                          genderWidget(
-                            FontAwesomeIcons.transgender,
-                            "Transgender",
-                            size,
-                            interestedIn,
-                            () {
-                              setState(
-                                () {
-                                  interestedIn = "Transgender";
-                                },
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-                    ],
+                    children: <Widget>[],
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: size.height * 0.02),
                     child: GestureDetector(
                       onTap: () {
-                        if (isButtonEnabled(state)) {
-                          _onSubmitted();
-                        } else {}
+                        _onSubmitted();
                       },
                       child: Container(
                         width: size.width * 0.8,
                         height: size.height * 0.06,
                         decoration: BoxDecoration(
-                          color: isButtonEnabled(state)
-                              ? Colors.white
-                              : Colors.grey,
+                          color: Colors.redAccent,
                           borderRadius:
                               BorderRadius.circular(size.height * 0.05),
                         ),
@@ -312,7 +160,7 @@ class _ProfileFormState extends State<ProfileForm> {
                           "Save",
                           style: TextStyle(
                               fontSize: size.height * 0.025,
-                              color: Colors.blue),
+                              color: Colors.white),
                         )),
                       ),
                     ),

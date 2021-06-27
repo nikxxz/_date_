@@ -1,12 +1,13 @@
+import 'package:date_/bloc/authentication/authentication_bloc.dart';
+import 'package:date_/bloc/authentication/authentication_state.dart';
+import 'package:date_/repositories/userRepository.dart';
+import 'package:date_/ui/pages/splash.dart';
+import 'package:date_/ui/widgets/tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waga/bloc/authentication/authentication_bloc.dart';
-import 'package:waga/bloc/authentication/authentication_state.dart';
-import 'package:waga/repositories/userRepository.dart';
-import 'package:waga/ui/pages/profile.dart';
-import 'package:waga/ui/pages/splash.dart';
-import 'package:waga/ui/widgets/tabs.dart';
 
+
+import 'Registration/name.dart';
 import 'login.dart';
 
 class Home extends StatelessWidget {
@@ -31,10 +32,11 @@ class Home extends StatelessWidget {
             );
           }
           if (state is AuthenticatedButNotSet) {
-            return Profile(
-              userRepository: _userRepository,
-              userId: state.userId,
-            );
+            // return Profile(
+            //   userRepository: _userRepository,
+            //   userId: state.userId,
+            // );
+            return NameReg();
           }
           if (state is Unauthenticated) {
             return Login(

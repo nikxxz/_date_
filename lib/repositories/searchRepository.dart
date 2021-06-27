@@ -1,6 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:waga/models/user.dart';
+import 'package:date_/models/user.dart';
 
 class SearchRepository {
   final FirebaseFirestore _firestore;

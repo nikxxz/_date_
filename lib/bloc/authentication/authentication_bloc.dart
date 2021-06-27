@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:waga/repositories/userRepository.dart';
+import 'package:date_/repositories/userRepository.dart';
 import './bloc.dart';
 
 class AuthenticationBloc

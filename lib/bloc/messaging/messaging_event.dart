@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:waga/models/message.dart';
+import 'package:date_/models/message.dart';
 
 abstract class MessagingEvent extends Equatable {
   const MessagingEvent();

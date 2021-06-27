@@ -1,18 +1,17 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:waga/bloc/search/search_bloc.dart';
-import 'package:waga/bloc/search/search_event.dart';
-import 'package:waga/bloc/search/search_state.dart';
-import 'package:waga/models/user.dart';
-import 'package:waga/repositories/searchRepository.dart';
-import 'package:waga/ui/widgets/iconWidget.dart';
-import 'package:waga/ui/widgets/profile.dart';
-import 'package:waga/ui/widgets/userGender.dart';
+import 'package:date_/bloc/search/search_bloc.dart';
+import 'package:date_/bloc/search/search_event.dart';
+import 'package:date_/bloc/search/search_state.dart';
+import 'package:date_/models/user.dart';
+import 'package:date_/repositories/searchRepository.dart';
+import 'package:date_/ui/widgets/iconWidget.dart';
+import 'package:date_/ui/widgets/profile.dart';
+import 'package:date_/ui/widgets/userGender.dart';
 
 class Search extends StatefulWidget {
   final String userId;
@@ -75,24 +74,28 @@ class _SearchState extends State<Search> {
 
           getDifference(_user.location);
           if (_user.location == null) {
-            return Text(
-              "No One Here",
-              style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black),
+            return Center(
+              child: Text(
+                "No One Here",
+                style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black),
+              ),
             );
           } else
             return profileWidget(
               padding: size.height * 0.035,
-              photoHeight: size.height * 0.824,
-              photoWidth: size.width * 0.95,
+              photoHeight: size.height * 0.67,
+              photoWidth: size.width * 0.8,
               photo: _user.photo,
               clipRadius: size.height * 0.02,
-              containerHeight: size.height * 0.3,
-              containerWidth: size.width * 0.9,
+              containerHeight: size.height * 0.305,
+              containerWidth: size.width * 0.8,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+                padding: EdgeInsets.symmetric(
+                    horizontal: size.width * 0.04,
+                    vertical: size.height * 0.0075),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -125,7 +128,7 @@ class _SearchState extends State<Search> {
                         Text(
                           difference != null
                               ? (difference / 1000).floor().toString() +
-                                  "km away"
+                                  " kms away"
                               : "away",
                           style: TextStyle(color: Colors.white),
                         )
@@ -137,8 +140,6 @@ class _SearchState extends State<Search> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
-                        iconWidget(EvaIcons.flash, () {}, size.height * 0.04,
-                            Colors.yellow),
                         iconWidget(Icons.clear, () {
                           _searchBloc
                               .add(PassUserEvent(widget.userId, _user.uid));
@@ -152,8 +153,6 @@ class _SearchState extends State<Search> {
                                 selectedUserId: _user.uid),
                           );
                         }, size.height * 0.06, Colors.red),
-                        iconWidget(EvaIcons.options2, () {}, size.height * 0.04,
-                            Colors.white)
                       ],
                     )
                   ],

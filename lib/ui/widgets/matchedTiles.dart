@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:date_/ui/widgets/photo.dart';
 
-Widget profileWidget(
+Widget MatchedTiles(
     {padding,
     photoHeight,
     photoWidth,
@@ -11,7 +11,7 @@ Widget profileWidget(
     containerWidth,
     child}) {
   return Padding(
-    padding: EdgeInsets.symmetric(vertical: 50, horizontal: 40),
+    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
     child: Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(clipRadius),

@@ -1,9 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waga/bloc/signup/sign_up_bloc.dart';
-import 'package:waga/repositories/userRepository.dart';
-import 'package:waga/ui/widgets/signUpForm.dart';
+import 'package:date_/bloc/signup/sign_up_bloc.dart';
+import 'package:date_/repositories/userRepository.dart';
+import 'package:date_/ui/widgets/signUpForm.dart';
 
 import '../constants.dart';
 
@@ -17,15 +16,6 @@ class SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Sign Up",
-          style: TextStyle(fontSize: 36.0),
-        ),
-        centerTitle: true,
-        backgroundColor: backgroundColor,
-        elevation: 0,
-      ),
       body: BlocProvider<SignUpBloc>(
         create: (context) => SignUpBloc(
           userRepository: _userRepository,

@@ -1,9 +1,11 @@
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waga/bloc/profile/profile_bloc.dart';
-import 'package:waga/repositories/userRepository.dart';
-import 'package:waga/ui/widgets/profileForm.dart';
+import 'package:date_/bloc/profile/profile_bloc.dart';
+import 'package:date_/repositories/userRepository.dart';
+import 'package:date_/ui/widgets/profileForm.dart';
 
 import '../constants.dart';
 
@@ -18,6 +20,8 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime dateTime;
+    File file;
     return Scaffold(
       appBar: AppBar(
         title: Text("Profile Setup"),
@@ -27,9 +31,7 @@ class Profile extends StatelessWidget {
       ),
       body: BlocProvider<ProfileBloc>(
         create: (context) => ProfileBloc(userRepository: _userRepository),
-        child: ProfileForm(
-          userRepository: _userRepository,
-        ),
+        child: ProfileForm('','',dateTime,'',file),
       ),
     );
   }

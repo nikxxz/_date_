@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
-import 'package:waga/repositories/matchesRepository.dart';
+import 'package:date_/repositories/matchesRepository.dart';
 import './bloc.dart';
 
 class MatchesBloc extends Bloc<MatchesEvent, MatchesState> {

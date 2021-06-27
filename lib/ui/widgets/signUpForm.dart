@@ -1,12 +1,13 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waga/bloc/authentication/authentication_bloc.dart';
-import 'package:waga/bloc/authentication/authentication_event.dart';
-import 'package:waga/bloc/signup/sign_up_bloc.dart';
-import 'package:waga/bloc/signup/sign_up_event.dart';
-import 'package:waga/bloc/signup/sign_up_state.dart';
-import 'package:waga/repositories/userRepository.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:date_/bloc/authentication/authentication_bloc.dart';
+import 'package:date_/bloc/authentication/authentication_event.dart';
+import 'package:date_/bloc/signup/sign_up_bloc.dart';
+import 'package:date_/bloc/signup/sign_up_event.dart';
+import 'package:date_/bloc/signup/sign_up_state.dart';
+import 'package:date_/repositories/userRepository.dart';
+import 'package:date_/ui/pages/login.dart';
 
 import '../constants.dart';
 
@@ -24,16 +25,11 @@ class SignUpForm extends StatefulWidget {
 class _SignUpFormState extends State<SignUpForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   SignUpBloc _signUpBloc;
-  //UserRepository get _userRepository => widget._userRepository;
 
-  bool get isPopulated =>
-      _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
-
-  bool isSignUpButtonEnabled(SignUpState state) {
-    return isPopulated && !state.isSubmitting;
-  }
+  UserRepository get _userRepository => widget._userRepository;
 
   @override
   void initState() {
@@ -48,7 +44,8 @@ class _SignUpFormState extends State<SignUpForm> {
   void _onFormSubmitted() {
     _signUpBloc.add(
       SignUpWithCredentialsPressed(
-          email: _emailController.text, password: _passwordController.text),
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim()),
     );
   }
 
@@ -99,109 +96,162 @@ class _SignUpFormState extends State<SignUpForm> {
       },
       child: BlocBuilder<SignUpBloc, SignUpState>(
         builder: (context, state) {
-          return SingleChildScrollView(
-            scrollDirection: Axis.vertical,
+          return Form(
+            key: _formKey,
             child: Container(
-              color: backgroundColor,
+              color: Colors.white54,
               width: size.width,
               height: size.height,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Center(
-                    child: Text(
-                      "Chill",
-                      style: TextStyle(
-                          fontSize: size.width * 0.2, color: Colors.white),
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: size.width * 0.075),
+                    child: Center(
+                      child: Text(
+                        "create new account",
+                        style: TextStyle(
+                          fontSize: size.width * 0.15,
+                          color: Colors.red[400],
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
                   Container(
-                    width: size.width * 0.8,
-                    child: Divider(
-                      height: size.height * 0.05,
-                      color: Colors.white,
+                    padding: EdgeInsets.only(
+                        left: 35.0, right: 35.0, top: 35.0, bottom: 10.0),
+                    child: Column(
+                      children: <Widget>[
+                        TextFormField(
+                          controller: _emailController,
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                          keyboardType: TextInputType.emailAddress,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Email cannot be left blank';
+                            } else
+                              return null;
+                          },
+                          decoration: InputDecoration(
+                              labelText: 'Email',
+                              labelStyle: TextStyle(
+                                  color: Colors.black.withOpacity(0.5)),
+                              border: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Colors.black.withOpacity(0.8))),
+                              focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black))),
+                        )
+                      ],
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(size.height * 0.02),
-                    child: TextFormField(
-                      controller: _emailController,
-                      // ignore: deprecated_member_use
-                      autovalidate: true,
-                      validator: (_) {
-                        return !state.isEmailValid ? "Invalid Email" : null;
-                      },
-                      decoration: InputDecoration(
-                        labelText: "Email",
-                        labelStyle: TextStyle(
-                            color: Colors.white, fontSize: size.height * 0.03),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.white, width: 1.0),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.white, width: 1.0),
-                        ),
-                      ),
+                  Container(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 35.0),
+                    child: Column(
+                      children: <Widget>[
+                        TextFormField(
+                          controller: _passwordController,
+                          style: TextStyle(color: Colors.black),
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Password cannot be left blank';
+                            } else if (value.length < 6) {
+                              return 'Password should be atleast 6 Characters';
+                            } else
+                              return null;
+                          },
+                          decoration: InputDecoration(
+                              labelText: 'Password',
+                              labelStyle: TextStyle(
+                                  color: Colors.black.withOpacity(0.5)),
+                              border: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Colors.black.withOpacity(0.6))),
+                              focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black))),
+                          obscureText: true,
+                        )
+                      ],
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(size.height * 0.02),
-                    child: TextFormField(
-                      controller: _passwordController,
-                      autocorrect: false,
-                      obscureText: true,
-                      // ignore: deprecated_member_use
-                      autovalidate: true,
-                      validator: (_) {
-                        return !state.isPasswordValid
-                            ? "Invalid Password"
-                            : null;
-                      },
-                      decoration: InputDecoration(
-                        labelText: "Password",
-                        labelStyle: TextStyle(
-                            color: Colors.white, fontSize: size.height * 0.03),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.white, width: 1.0),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.white, width: 1.0),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(size.height * 0.02),
-                    child: GestureDetector(
-                      onTap: isSignUpButtonEnabled(state)
-                          ? _onFormSubmitted
-                          : null,
-                      child: Container(
-                        width: size.width * 0.8,
-                        height: size.height * 0.06,
-                        decoration: BoxDecoration(
-                          color: isSignUpButtonEnabled(state)
-                              ? Colors.white
-                              : Colors.grey,
-                          borderRadius:
-                              BorderRadius.circular(size.height * 0.05),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Sign Up",
-                            style: TextStyle(
-                                fontSize: size.height * 0.025,
-                                color: Colors.blue),
+                  Hero(
+                    tag: 'LogInOutBtn',
+                    child: Container(
+                      padding: EdgeInsets.all(size.height * 0.02),
+                      margin:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.04),
+                      height: size.height * 0.1,
+                      child: Material(
+                        borderRadius: BorderRadius.circular(size.height * 0.05),
+                        shadowColor: Colors.redAccent,
+                        color: Colors.red[400],
+                        elevation: 10.0,
+                        child: GestureDetector(
+                          behavior: HitTestBehavior.translucent,
+                          onTap: () {
+                            if (_formKey.currentState.validate()) {
+                              _onFormSubmitted();
+                            }
+                          },
+                          child: Center(
+                            child: Text(
+                              'SIGNUP',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: size.width * 0.04,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 1.1),
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  )
+                  ),
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'Already have an account?',
+                        style: TextStyle(fontSize: size.width * 0.04),
+                      ),
+                      SizedBox(
+                        width: 5.0,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).pop(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return Login(
+                                  userRepository: _userRepository,
+                                );
+                              },
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'switch',
+                          child: Text(
+                            'Login',
+                            style: TextStyle(
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold,
+                                fontSize: size.width * 0.04,
+                                decoration: TextDecoration.underline),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ],
               ),
             ),

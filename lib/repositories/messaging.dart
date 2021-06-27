@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:uuid/uuid.dart';
-import 'package:waga/models/message.dart';
+import 'package:date_/models/message.dart';
 
 class MessagingRepository {
   final FirebaseFirestore _firestore;

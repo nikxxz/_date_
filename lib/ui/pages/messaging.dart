@@ -4,14 +4,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waga/bloc/messaging/messaging_bloc.dart';
-import 'package:waga/bloc/messaging/messaging_event.dart';
-import 'package:waga/bloc/messaging/messaging_state.dart';
-import 'package:waga/models/message.dart';
-import 'package:waga/models/user.dart';
-import 'package:waga/repositories/messaging.dart';
-import 'package:waga/ui/widgets/message.dart';
-import 'package:waga/ui/widgets/photo.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:date_/bloc/messaging/messaging_bloc.dart';
+import 'package:date_/bloc/messaging/messaging_event.dart';
+import 'package:date_/bloc/messaging/messaging_state.dart';
+import 'package:date_/models/message.dart';
+import 'package:date_/models/user.dart';
+import 'package:date_/repositories/messaging.dart';
+import 'package:date_/ui/widgets/message.dart';
+import 'package:date_/ui/widgets/photo.dart';
 
 import '../constants.dart';
 
@@ -85,8 +86,8 @@ class _MessagingState extends State<Messaging> {
           children: <Widget>[
             ClipOval(
               child: Container(
-                height: size.height * 0.06,
-                width: size.height * 0.06,
+                height: size.height * 0.045,
+                width: size.height * 0.045,
                 child: PhotoWidget(
                   photoLink: widget.selectedUser.photo,
                 ),
@@ -125,10 +126,12 @@ class _MessagingState extends State<Messaging> {
                   stream: messageStream,
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
-                      return Text(
-                        "Start the conversation?",
-                        style: TextStyle(
-                            fontSize: 16.0, fontWeight: FontWeight.bold),
+                      return Center(
+                        child: Text(
+                          "Start the conversation",
+                          style: TextStyle(
+                              fontSize: 16.0, fontWeight: FontWeight.bold),
+                        ),
                       );
                     }
                     if (snapshot.data.docs.isNotEmpty) {
@@ -153,7 +156,7 @@ class _MessagingState extends State<Messaging> {
                     } else {
                       return Center(
                         child: Text(
-                          "Start the conversation ?",
+                          "Start the conversation",
                           style: TextStyle(
                               fontSize: 16.0, fontWeight: FontWeight.bold),
                         ),
@@ -164,13 +167,15 @@ class _MessagingState extends State<Messaging> {
                 Container(
                   width: size.width,
                   height: size.height * 0.06,
-                  color: backgroundColor,
+                  color: Colors.black54.withOpacity(0.8),
                   child: Row(
                     children: <Widget>[
                       GestureDetector(
                         onTap: () async {
-                          File photo =
-                              await FilePicker.getFile(type: FileType.image);
+                          final _picker = ImagePicker();
+                          PickedFile photo1 = await _picker.getImage(
+                              source: ImageSource.gallery, imageQuality: 70);
+                          File photo = File(photo1.path);
                           if (photo != null) {
                             _messagingBloc.add(
                               SendMessageEvent(
@@ -189,7 +194,7 @@ class _MessagingState extends State<Messaging> {
                               horizontal: size.height * 0.005),
                           child: Icon(
                             Icons.add,
-                            color: Colors.white,
+                            color: Colors.black,
                             size: size.height * 0.04,
                           ),
                         ),
@@ -224,7 +229,7 @@ class _MessagingState extends State<Messaging> {
                           child: Icon(
                             Icons.send,
                             size: size.height * 0.04,
-                            color: isValid ? Colors.white : Colors.grey,
+                            color: isValid ? Colors.black : Colors.grey,
                           ),
                         ),
                       )

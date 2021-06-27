@@ -1,9 +1,12 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'package:waga/models/message.dart';
-import 'package:waga/repositories/messaging.dart';
-import 'package:waga/ui/widgets/photo.dart';
+import 'package:date_/bloc/message/message_bloc.dart';
+import 'package:date_/bloc/message/message_state.dart';
+import 'package:date_/models/message.dart';
+import 'package:date_/repositories/messageRepository.dart';
+import 'package:date_/repositories/messaging.dart';
+import 'package:date_/ui/widgets/photo.dart';
 
 import '../constants.dart';
 
@@ -17,8 +20,9 @@ class MessageWidget extends StatefulWidget {
 }
 
 class _MessageWidgetState extends State<MessageWidget> {
+  MessageRepository _messageRepository = MessageRepository();
   MessagingRepository _messagingRepository = MessagingRepository();
-
+  MessageBloc _messageBloc;
   Message _message;
 
   Future getDetails() async {
